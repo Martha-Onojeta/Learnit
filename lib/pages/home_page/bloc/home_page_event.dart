@@ -1,10 +1,15 @@
 part of 'home_page_bloc.dart';
 
 class HomePageEvent {
-  HomePageEvent();
+  const HomePageEvent();
 }
 
 class HomePageDots extends HomePageEvent {
-  int index;
-  HomePageDots(this.index);
+  final int index;
+  const HomePageDots(this.index) : super();
+}
+
+class HomePageCourseItem extends HomePageEvent {
+  final List<CourseItem> courseItem;
+  HomePageCourseItem(this.courseItem);
 }

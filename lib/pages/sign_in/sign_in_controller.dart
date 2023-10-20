@@ -9,6 +9,7 @@ import 'package:learning_app/common/entities/entities.dart';
 import 'package:learning_app/common/values/constant.dart';
 import 'package:learning_app/common/widgets/toast.dart';
 import 'package:learning_app/global.dart';
+import 'package:learning_app/pages/home_page/home_controller.dart';
 import 'package:learning_app/pages/sign_in/bloc/sign_in_bloc.dart';
 
 class SignInController {
@@ -62,7 +63,10 @@ class SignInController {
             print('user photoUrl ${photoUrl}');
 
             print('user exist');
-            asynPostAllData(loginRequestEntity);
+            await asynPostAllData(loginRequestEntity);
+            if (context.mounted) {
+              await HomeController(context: context).init();
+            }
 
             //got verified user from firebase
           } else {
@@ -97,13 +101,14 @@ class SignInController {
       try {
         Global.storageService.setString(
             AppConstant.STORAGE_USER_PROFILE_KEY, jsonEncode(result.data!));
-
+        //used forauthorization, that's why we saved it.
         Global.storageService.setString(
             AppConstant.STORAGE_USER_TOKEN_KEY, result.data!.access_token!);
         EasyLoading.dismiss();
-        //     ignore: use_build_context_synchronously
-        Navigator.of(context)
-            .pushNamedAndRemoveUntil('/application', (route) => false);
+        if (context.mounted) {
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil('/application', (route) => false);
+        }
       } catch (e) {
         print('saving local storage error ${e.toString()}');
       }

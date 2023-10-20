@@ -4,6 +4,7 @@ import 'package:learning_app/common/routes/names.dart';
 import 'package:learning_app/common/values/constant.dart';
 import 'package:learning_app/global.dart';
 import 'package:learning_app/pages/application/bloc/app_bloc.dart';
+import 'package:learning_app/pages/home_page/bloc/home_page_bloc.dart';
 import 'package:learning_app/pages/settings/widget/setting_widget.dart';
 import 'package:learning_app/pages/settings/bloc/settings_bloc.dart';
 
@@ -17,7 +18,9 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   void removeUserData() {
     context.read<AppBloc>().add(const TriggerAppEvent(0));
+    context.read<HomePageBloc>().add(const HomePageDots(0));
     Global.storageService.remove(AppConstant.STORAGE_USER_TOKEN_KEY);
+    Global.storageService.remove(AppConstant.STORAGE_USER_PROFILE_KEY);
     Navigator.of(context)
         .pushNamedAndRemoveUntil(AppRoutes.SIGN_IN, (route) => false);
   }

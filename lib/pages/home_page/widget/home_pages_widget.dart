@@ -2,11 +2,13 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:learning_app/common/entities/course.dart';
 import 'package:learning_app/common/values/app_color.dart';
+import 'package:learning_app/common/values/constant.dart';
 import 'package:learning_app/common/widgets/base_text_widget.dart';
 import 'package:learning_app/pages/home_page/bloc/home_page_bloc.dart';
 
-AppBar buildAppBar() {
+AppBar buildAppBar(String avatar) {
   return AppBar(
     title: Container(
       margin: EdgeInsets.only(left: 7.w, right: 7.w),
@@ -22,9 +24,10 @@ AppBar buildAppBar() {
             child: Container(
               width: 40.w,
               height: 40.h,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage('assets/icons/person.png'))),
+                      image: NetworkImage(
+                          '${AppConstant.SERVER_API_URL}${avatar}'))),
             ),
           )
         ],
@@ -205,11 +208,13 @@ Widget _reuseableMenuText(String menuText,
   );
 }
 
-Widget courseGrid() {
+Widget courseGrid(CourseItem item) {
   return Container(
-    decoration: const BoxDecoration(
+    decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15.r),
         image: DecorationImage(
-            fit: BoxFit.fill, image: AssetImage('assets/icons/Image_2.png'))),
+            fit: BoxFit.fill,
+            image: NetworkImage(AppConstant.SERVER_UPLOADS + item.thumbnail!))),
     child: Container(
       padding: EdgeInsets.all(12.w),
       child: Column(
@@ -217,7 +222,7 @@ Widget courseGrid() {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Text(
-            'Best course for IT and Engineering',
+            item.name ?? '',
             textAlign: TextAlign.left,
             softWrap: false,
             maxLines: 1,
@@ -231,7 +236,7 @@ Widget courseGrid() {
             height: 5.h,
           ),
           Text(
-            'Best course for IT',
+            item.description ?? '',
             textAlign: TextAlign.left,
             softWrap: false,
             maxLines: 1,

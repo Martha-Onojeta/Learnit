@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning_app/common/values/app_color.dart';
 import 'package:learning_app/common/routes/route.dart';
 import 'package:learning_app/global.dart';
+import 'package:learning_app/pages/welcome_screen/welcome.dart';
 
 Future<void> main() async {
   await Global.init();
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
                         elevation: 0,
                         backgroundColor: Colors.white)),
                 onGenerateRoute: AppPages.GenerateRouteSettings,
+                // home: Welcome(),
               )),
     );
   }

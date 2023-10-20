@@ -5,6 +5,8 @@ import 'package:learning_app/common/routes/route.dart';
 import 'package:learning_app/global.dart';
 import 'package:learning_app/pages/application/application_page.dart';
 import 'package:learning_app/pages/application/bloc/app_bloc.dart';
+import 'package:learning_app/pages/course/bloc/course_detail_bloc.dart';
+import 'package:learning_app/pages/course/course_detail.dart';
 import 'package:learning_app/pages/home_page/bloc/home_page_bloc.dart';
 import 'package:learning_app/pages/home_page/home_page.dart';
 import 'package:learning_app/pages/register/bloc/register_bloc.dart';
@@ -43,6 +45,10 @@ class AppPages {
           route: AppRoutes.SETTINGS,
           page: const SettingsPage(),
           bloc: BlocProvider(create: (_) => SettingsBloc())),
+      PageEntity(
+          route: AppRoutes.COURSE_DETAIL,
+          page: const CourseDetailPage(),
+          bloc: BlocProvider(create: (_) => CourseDetailBloc())),
     ];
   }
 
