@@ -102,6 +102,8 @@ class SignInController {
         Global.storageService.setString(
             AppConstant.STORAGE_USER_PROFILE_KEY, jsonEncode(result.data!));
         //used forauthorization, that's why we saved it.
+        print(
+            '..................my token is${result.data!.access_token}......................');
         Global.storageService.setString(
             AppConstant.STORAGE_USER_TOKEN_KEY, result.data!.access_token!);
         EasyLoading.dismiss();

@@ -23,7 +23,7 @@ class HomeController {
     //  print("...home controller init method...");
     //make sure that user is logged in and then make an api call
     if (Global.storageService.getUserToken().isNotEmpty) {
-      var result = await CourseAPI.courselist();
+      var result = await CourseAPI.courseList();
       if (result.code == 200) {
         if (context.mounted) {
           context.read<HomePageBloc>().add(HomePageCourseItem(result.data!));

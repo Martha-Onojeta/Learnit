@@ -42,9 +42,6 @@ class _HomePageState extends State<HomePage> {
         builder: (context, state) {
           if (state.courseItem.isEmpty) {
             HomeController(context: context).init();
-            print('.......course is empty');
-          } else {
-            print('.......State.course is not empty');
           }
           return Container(
             margin: EdgeInsets.symmetric(horizontal: 25.w, vertical: 0),
@@ -56,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 SliverToBoxAdapter(
                   child: homePageText(
-                    '${userProfile!.name!}',
+                    userProfile.name!,
                   ),
                 ),
                 SliverPadding(

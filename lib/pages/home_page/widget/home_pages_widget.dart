@@ -152,7 +152,7 @@ Widget _slidersContainer({String path = 'assets/icons/Art.png'}) {
     width: 325.w,
     height: 162.h,
     decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(20.h)),
+        borderRadius: BorderRadius.all(Radius.circular(20.r)),
         image: DecorationImage(fit: BoxFit.fill, image: AssetImage(path))),
   );
 }
